@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wand Charity Foundation – Hope Rises with Every Donation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #faf8f5;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        /* ---------- COLOR PALETTE (adapted from photo) ---------- */
+        :root {
+            --deep-purple: #4b2c7a;
+            --gold: #e8b73d;
+            --gold-light: #f9d77e;
+            --white: #ffffff;
+            --light-bg: #f4f2ee;
+            --dark-text: #1e1e1e;
+            --medium-text: #5c5c5c;
+        }
+
+        /* ---------- NAVIGATION ---------- */
+        .navbar {
+            background: var(--deep-purple);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            background: var(--gold);
+            color: var(--deep-purple);
+            padding: 0 8px;
+            border-radius: 4px;
+            font-size: 1.4rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .donate-btn-sm {
+            background: var(--gold);
+            color: var(--deep-purple);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid var(--gold);
+        }
+
+        .donate-btn-sm:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            background: linear-gradient(135deg, var(--deep-purple), #5d3b8c);
+            color: var(--white);
+            padding: 100px 30px 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            color: #e0d7f0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--deep-purple);
+        }
+
+        .btn-primary:hover {
+            background: #f0c040;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--deep-purple);
+        }
+
+        /* ---------- SECTIONS GENERAL ---------- */
+        .section {
+            padding: 80px 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--deep-purple);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--medium-text);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1 1 500px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--deep-purple);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #3a3a3a;
+        }
+
+        .about-image {
+            flex: 1 1 400px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            border-radius: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-purple);
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* ---------- WHAT WE DO ---------- */
+        .cards {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            flex: 1 1 220px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .card h4 {
+            color: var(--deep-purple);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-wrapper {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-details {
+            flex: 1 1 300px;
+        }
+
+        .contact-details h3 {
+            color: var(--deep-purple);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .contact-item a {
+            color: var(--deep-purple);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-map {
+            flex: 1 1 300px;
+            background: var(--light-bg);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--medium-text);
+            min-height: 200px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--deep-purple);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: var(--deep-purple);
+                width: 100%;
+                padding: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                flex-direction: column;
+            }
+
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            W<span>CF</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Our Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#donate" class="donate-btn-sm">Donate</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1><span>Hope</span> Rises with Every Donation</h1>
+            <p>Wand Charity Foundation · WCF<br>Helping kids and the elderly in Uganda</p>
+            <div class="hero-buttons">
+                <a href="#donate" class="btn btn-primary">Donate Now</a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section" id="about">
+        <h2 class="section-title">Who We Are</h2>
+        <p class="section-subtitle">A heart‑driven movement for change in Uganda</p>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Wand Charity Foundation (WCF)</h3>
+                <p>
+                    Founded with the belief that every child and every elderly person deserves dignity, care, and opportunity.  
+                    Our work spans communities across Uganda, focusing on providing food, shelter, education, and medical support  
+                    to those who need it most.
+                </p>
+                <p>
+                    With your help, hope becomes action. From our main office at <strong>Ovino Mall, Kampala</strong>,  
+                    we coordinate outreach programs that directly uplift lives.
+                </p>
+            </div>
+            <div class="about-image">
+                🌟 Hope in Action
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHAT WE DO ========== -->
+    <section class="section" id="work">
+        <h2 class="section-title">Our Work</h2>
+        <p class="section-subtitle">Every donation creates real impact</p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">👧🏾👦🏾</div>
+                <h4>Child Support</h4>
+                <p>Providing school fees, meals, and safe spaces for vulnerable children.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">👴🏾👵🏾</div>
+                <h4>Elderly Care</h4>
+                <p>Delivering food, blankets, and medical check‑ups to the elderly in remote areas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏥</div>
+                <h4>Health Outreach</h4>
+                <p>Facilitating access to basic medicines and health education.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h4>Education</h4>
+                <p>Equipping schools with supplies and sponsoring talented students.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DONATE CALL-TO-ACTION ========== -->
+    <section class="section" id="donate" style="background: var(--light-bg); border-radius: 30px; margin: 40px auto; text-align: center;">
+        <h2 class="section-title" style="color: var(--deep-purple);">Make a Difference Today</h2>
+        <p class="section-subtitle">Your generosity brings hope to many</p>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">
+            <strong>Contact us directly to donate:</strong><br>
+            📞 <a href="tel:+256787329794">+256 787 329 794</a> (also on WhatsApp)<br>
+            ✉️ <a href="mailto:theputonug@gmail.com">theputonug@gmail.com</a>
+        </p>
+        <a href="https://wa.me/256787329794?text=Hello%20WCF,%20I%20would%20like%20to%20support%20your%20work" 
+           class="btn btn-primary" 
+           target="_blank">
+            💬 Donate via WhatsApp
+        </a>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We’d love to hear from you</p>
+        <div class="contact-wrapper">
+            <div class="contact-details">
+                <h3>Get in Touch</h3>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span><strong>Main Office:</strong><br>Ovino Mall, Kampala, Uganda</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span><a href="tel:+256787329794">+256 787 329 794</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <span><a href="mailto:theputonug@gmail.com">theputonug@gmail.com</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span>
+                        <a href="https://facebook.com/wandcharityfoundation" target="_blank">
+                            facebook.com/wandcharityfoundation
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-map">
+                🗺️ Ovino Mall, Kampala<br>(map placeholder)
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p>© <span id="year"></span> Wand Charity Foundation (WCF). All rights reserved.</p>
+        <p>Hope rises with every donation 🙏</p>
+        <div class="social-links">
+            <a href="https://facebook.com/wandcharityfoundation" target="_blank" title="Facebook">📘</a>
+            <a href="https://wa.me/256787329794" target="_blank" title="WhatsApp">💬</a>
+            <a href="mailto:theputonug@gmail.com" title="Email">📧</a>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Auto-update year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+
+</body>
+                       </html>
