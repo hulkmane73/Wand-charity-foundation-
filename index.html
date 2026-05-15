@@ -786,12 +786,87 @@ Support Our Mission
 Donate Using:
 </h3>
 
-<p>
-💳 PayPal <br><br>
-📱 MTN Mobile Money <br><br>
-📱 Airtel Money <br><br>
-🌍 Flutterwave
-</p>
+<!-- ================= PAYMENT METHODS ================= -->
+
+<div class="payment-methods">
+
+    <div class="payment-item">
+        <img src="images/paypal.png" alt="PayPal Logo">
+        <span>PayPal</span>
+    </div>
+
+    <div class="payment-item">
+        <img src="images/mtn.png" alt="MTN Mobile Money Logo">
+        <span>MTN Mobile Money</span>
+    </div>
+
+    <div class="payment-item">
+        <img src="images/airtel.png" alt="Airtel Money Logo">
+        <span>Airtel Money</span>
+    </div>
+
+    <div class="payment-item">
+        <img src="images/flutterwave.png" alt="Flutterwave Logo">
+        <span>Flutterwave</span>
+    </div>
+
+</div>
+
+<!-- ================= CSS ================= -->
+
+<style>
+
+.payment-methods{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.payment-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 18px;
+    background:rgba(255,255,255,0.12);
+    border-radius:15px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+}
+
+.payment-item:hover{
+    transform:translateY(-4px);
+}
+
+.payment-item img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+}
+
+.payment-item span{
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--primary);
+}
+
+@media(max-width:768px){
+
+    .payment-methods{
+        gap:15px;
+    }
+
+    .payment-item{
+        width:100%;
+        justify-content:center;
+    }
+
+}
+
+</style>
 
 <br>
 
