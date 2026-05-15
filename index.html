@@ -921,15 +921,110 @@ Newsletter
 Stay updated with our latest outreach programs
 </p>
 
+<!-- ================= NEWSLETTER / SUBSCRIPTION ================= -->
+
 <div class="newsletter-box">
 
-<input type="email" placeholder="Enter your email">
+    <input type="email" id="subscriberEmail" placeholder="Enter your email" required>
 
-<button>
-Subscribe
-</button>
+    <button onclick="subscribeNow()">
+        Subscribe
+    </button>
 
 </div>
+
+<!-- ================= CSS ================= -->
+
+<style>
+
+.newsletter-box{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.newsletter-box input{
+    padding:15px 20px;
+    width:320px;
+    border:none;
+    border-radius:50px;
+    outline:none;
+    background:#f3f3f3;
+    font-size:1rem;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.newsletter-box button{
+    padding:15px 28px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#e8b73d,#f4ce68);
+    color:#4b2c7a;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.3s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.newsletter-box button:hover{
+    transform:translateY(-3px);
+}
+
+@media(max-width:768px){
+
+    .newsletter-box{
+        flex-direction:column;
+    }
+
+    .newsletter-box input{
+        width:100%;
+    }
+
+    .newsletter-box button{
+        width:100%;
+    }
+
+}
+
+</style>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+function subscribeNow(){
+
+    const email = document.getElementById('subscriberEmail').value;
+
+    if(email === ""){
+        alert("Please enter your email address.");
+        return;
+    }
+
+    const westernUnionMessage =
+`Hello Wand Charity Foundation,
+
+I would like to subscribe and support your mission.
+
+Subscriber Email: ${email}
+
+Receiver Details:
+Location: Kampala, Uganda
+Phone Number: +256787329794
+
+Please guide me through the Western Union payment process.`;
+
+    const whatsappURL =
+`https://wa.me/256787329794?text=${encodeURIComponent(westernUnionMessage)}`;
+
+    window.open(whatsappURL, '_blank');
+}
+
+</script>
 
 </div>
 
